@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -297,38 +299,39 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-                Container(
-                  color: Colors.transparent,
-                  width: double.infinity,
-                  height: 50,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 5, 10, 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          color: Colors.transparent,
-                          width: 30,
-                          height: 30,
-                          child: Image.asset(
-                            "assets/images/apple-music.png",
-                            fit: BoxFit.contain,
+                if (Platform.isIOS)
+                  Container(
+                    color: Colors.transparent,
+                    width: double.infinity,
+                    height: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 5, 10, 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            color: Colors.transparent,
+                            width: 30,
+                            height: 30,
+                            child: Image.asset(
+                              "assets/images/apple-music.png",
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 20),
-                        const Text(
-                          "Open in Apple Music",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                          const SizedBox(width: 20),
+                          const Text(
+                            "Open in Apple Music",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
                 Container(
                   color: Colors.transparent,
                   width: double.infinity,
@@ -1654,7 +1657,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           padding: EdgeInsets.all(10),
                           child: Center(
                             child: Text(
-                              "HEPSİNİ GÖR",
+                              "SEE ALL",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -1816,7 +1819,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Türkiye List",
+                                  "Desi List",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 16,
@@ -1871,7 +1874,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -1880,7 +1883,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -1930,7 +1933,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -1939,7 +1942,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -1989,7 +1992,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -1998,7 +2001,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -2055,14 +2058,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Discovery: Türkiye",
+                                  "Discover: Desi",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
-                                  "HEPSİNİ GÖR",
+                                  "SEE ALL",
                                   style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 16,
@@ -2110,7 +2113,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -2119,7 +2122,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -2169,7 +2172,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -2178,7 +2181,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -2228,7 +2231,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -2237,7 +2240,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -2294,14 +2297,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Dünya Listesi",
+                                  "World List",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
-                                  "HEPSİNİ GÖR",
+                                  "SEE ALL",
                                   style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 16,
@@ -2349,7 +2352,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -2358,7 +2361,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -2408,7 +2411,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -2417,7 +2420,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
@@ -2467,7 +2470,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Hakim Bey",
+                                              "Chaleya",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
@@ -2476,7 +2479,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                             SizedBox(height: 3),
                                             Text(
-                                              "KADR",
+                                              "Jawan",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 16,
