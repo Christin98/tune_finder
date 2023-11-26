@@ -5,7 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tune_finder/acr/home_page.dart';
 import 'package:tune_finder/acr/log.dart';
+import 'package:tune_finder/acr/providers.dart';
+import 'package:tune_finder/acr/theme.dart';
 
 void main() {
   Log.init(kReleaseMode);
@@ -15,27 +18,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tune Finder',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -59,12 +46,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    // context.read(homeVm).init(context);
+    context.read(homeVM).init(context);
+    context.read(homeVM).controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2000),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // final loading = useProvider(homeVm.select((v)=>));
+    final loading = useProvider(homeVM.select((v) => v.loading));
 
     var screenwidth = MediaQuery.of(context).size.width;
     var screenheight = MediaQuery.of(context).size.height;
@@ -159,13 +150,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     const SizedBox(height: 15),
                     InkWell(
                       onTap: () {
-                        if (kDebugMode) {
-                          print("listening...");
+                        if (!loading) {
+                          context.read(homeVM).start();
+                        } else {
+                          context.read(homeVM).stop();
                         }
                       },
-                      child: const Text(
-                        "Ripple Effect",
-                        style: TextStyle(fontSize: 12),
+                      child: Ripples(
+                        color: Colors.blueGrey,
+                        size: loading ? 180 : 100,
+                        child: Container(
+                          color: Colors.transparent,
+                          width: 160,
+                          height: 160,
+                          margin: const EdgeInsets.all(20),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              "assets/images/shazam-logo.png",
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 75),

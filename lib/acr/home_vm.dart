@@ -1,12 +1,16 @@
 import 'dart:async';
 
 import 'package:acr_cloud_sdk/acr_cloud_sdk.dart';
+import 'package:tune_finder/acr/song_detail.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:tune_finder/acr/song.dart';
 
 class HomeViewModel extends ChangeNotifier {
   late AnimationController controller;
   final AcrCloudSdk arc = AcrCloudSdk();
+  final SongAPI api = SongAPI();
 
   BuildContext? _context;
 
@@ -67,5 +71,22 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  void searchSong(SongModel song) async {}
+  void searchSong(SongModel song) async {
+    var data = song.metadata;
+
+    if (data != null && data.music!.isNotEmpty) {
+      var req = await api
+          .dataFromDeezer(data.music?[0].externalMetadata?.deezer?.track?.id);
+      // ignore: avoid_print
+      req.fold((l) => print(l.toString()), (songModel) {
+        showCupertinoModalBottomSheet(
+            context: _context!,
+            builder: (_) {
+              return SongDetailPage(songModel);
+            });
+      });
+    }
+    controller.stop();
+    loading = false;
+  }
 }

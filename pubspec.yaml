@@ -51,6 +51,8 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   dio: ^5.3.3
   google_fonts: ^6.1.0
+  webview_flutter_android: ^3.12.1
+  webview_flutter_wkwebview: ^3.9.4
 
 flutter_icons:
   image_path: "assets/images/shazam-logo.png"
