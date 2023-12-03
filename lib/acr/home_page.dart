@@ -8,6 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math' as math show sin, pi, sqrt;
 
 class HomePage extends StatefulHookWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -86,7 +88,7 @@ class Ripples extends HookWidget {
   final VoidCallback? onPressed;
 
   Widget _button() {
-    final _controller = useProvider(homeVM.select((v) => v.controller));
+    final controller = useProvider(homeVM.select((v) => v.controller));
 
     return Center(
       child: ClipRRect(
@@ -100,7 +102,7 @@ class Ripples extends HookWidget {
           child: ScaleTransition(
             scale: Tween(begin: 0.95, end: 1.0).animate(
               CurvedAnimation(
-                parent: _controller,
+                parent: controller,
                 curve: const _PulsateCurve(),
               ),
             ),
@@ -113,11 +115,11 @@ class Ripples extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = useProvider(homeVM.select((v) => v.controller));
+    final controller = useProvider(homeVM.select((v) => v.controller));
 
     return CustomPaint(
       painter: _CirclePainter(
-        _controller,
+        controller,
         color: color,
       ),
       child: SizedBox(

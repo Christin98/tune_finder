@@ -13,7 +13,7 @@ class Log {
   final bool production;
 
   String debug(String tag, [dynamic payload]) {
-    var output;
+    String output;
     if (production) return '';
     try {
       output = generator('=', tag, jsonPretty(json.decode(payload)));

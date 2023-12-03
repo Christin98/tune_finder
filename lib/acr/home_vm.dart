@@ -34,9 +34,9 @@ class HomeViewModel extends ChangeNotifier {
 
       arc
         ..init(
-          host: 'identify-eu-west-1.acrcloud.com',
-          accessKey: '92e5456a723332fd090e3ab70ece161e',
-          accessSecret: 'orZqaXs6DkJglYXeypJC0YCh0a4LEjOoMdl8gNTJ',
+          host: 'identify-ap-southeast-1.acrcloud.com',
+          accessKey: '87c519ea08b06de3997d1ddb815050d2',
+          accessSecret: 'bq6JwzBSMbG1TOOZNO8J9s6gPSdk0faseQinGZ8E',
           setLog: false,
         )
         ..songModelStream.listen(searchSong);

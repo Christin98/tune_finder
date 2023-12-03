@@ -77,49 +77,48 @@ class DeezerSongModel {
     if (json['contributors'] != null) {
       contributors = <Contributors>[];
       json['contributors'].forEach((v) {
-        contributors?.add(new Contributors.fromJson(v));
+        contributors?.add(Contributors.fromJson(v));
       });
     }
     md5Image = json['md5_image'];
-    artist =
-        json['artist'] != null ? new Artist.fromJson(json['artist']) : null;
-    album = json['album'] != null ? new Album.fromJson(json['album']) : null;
+    artist = json['artist'] != null ? Artist.fromJson(json['artist']) : null;
+    album = json['album'] != null ? Album.fromJson(json['album']) : null;
     type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['readable'] = this.readable;
-    data['title'] = this.title;
-    data['title_short'] = this.titleShort;
-    data['title_version'] = this.titleVersion;
-    data['isrc'] = this.isrc;
-    data['link'] = this.link;
-    data['share'] = this.share;
-    data['duration'] = this.duration;
-    data['track_position'] = this.trackPosition;
-    data['disk_number'] = this.diskNumber;
-    data['rank'] = this.rank;
-    data['release_date'] = this.releaseDate;
-    data['explicit_lyrics'] = this.explicitLyrics;
-    data['explicit_content_lyrics'] = this.explicitContentLyrics;
-    data['explicit_content_cover'] = this.explicitContentCover;
-    data['preview'] = this.preview;
-    data['bpm'] = this.bpm;
-    data['gain'] = this.gain;
-    data['available_countries'] = this.availableCountries;
-    if (this.contributors != null) {
-      data['contributors'] = this.contributors?.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['readable'] = readable;
+    data['title'] = title;
+    data['title_short'] = titleShort;
+    data['title_version'] = titleVersion;
+    data['isrc'] = isrc;
+    data['link'] = link;
+    data['share'] = share;
+    data['duration'] = duration;
+    data['track_position'] = trackPosition;
+    data['disk_number'] = diskNumber;
+    data['rank'] = rank;
+    data['release_date'] = releaseDate;
+    data['explicit_lyrics'] = explicitLyrics;
+    data['explicit_content_lyrics'] = explicitContentLyrics;
+    data['explicit_content_cover'] = explicitContentCover;
+    data['preview'] = preview;
+    data['bpm'] = bpm;
+    data['gain'] = gain;
+    data['available_countries'] = availableCountries;
+    if (contributors != null) {
+      data['contributors'] = contributors?.map((v) => v.toJson()).toList();
     }
-    data['md5_image'] = this.md5Image;
-    if (this.artist != null) {
-      data['artist'] = this.artist?.toJson();
+    data['md5_image'] = md5Image;
+    if (artist != null) {
+      data['artist'] = artist?.toJson();
     }
-    if (this.album != null) {
-      data['album'] = this.album?.toJson();
+    if (album != null) {
+      data['album'] = album?.toJson();
     }
-    data['type'] = this.type;
+    data['type'] = type;
     return data;
   }
 }
@@ -171,20 +170,20 @@ class Contributors {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['link'] = this.link;
-    data['share'] = this.share;
-    data['picture'] = this.picture;
-    data['picture_small'] = this.pictureSmall;
-    data['picture_medium'] = this.pictureMedium;
-    data['picture_big'] = this.pictureBig;
-    data['picture_xl'] = this.pictureXl;
-    data['radio'] = this.radio;
-    data['tracklist'] = this.tracklist;
-    data['type'] = this.type;
-    data['role'] = this.role;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['link'] = link;
+    data['share'] = share;
+    data['picture'] = picture;
+    data['picture_small'] = pictureSmall;
+    data['picture_medium'] = pictureMedium;
+    data['picture_big'] = pictureBig;
+    data['picture_xl'] = pictureXl;
+    data['radio'] = radio;
+    data['tracklist'] = tracklist;
+    data['type'] = type;
+    data['role'] = role;
     return data;
   }
 }
@@ -233,19 +232,19 @@ class Artist {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['link'] = this.link;
-    data['share'] = this.share;
-    data['picture'] = this.picture;
-    data['picture_small'] = this.pictureSmall;
-    data['picture_medium'] = this.pictureMedium;
-    data['picture_big'] = this.pictureBig;
-    data['picture_xl'] = this.pictureXl;
-    data['radio'] = this.radio;
-    data['tracklist'] = this.tracklist;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['link'] = link;
+    data['share'] = share;
+    data['picture'] = picture;
+    data['picture_small'] = pictureSmall;
+    data['picture_medium'] = pictureMedium;
+    data['picture_big'] = pictureBig;
+    data['picture_xl'] = pictureXl;
+    data['radio'] = radio;
+    data['tracklist'] = tracklist;
+    data['type'] = type;
     return data;
   }
 }
@@ -294,19 +293,19 @@ class Album {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['link'] = this.link;
-    data['cover'] = this.cover;
-    data['cover_small'] = this.coverSmall;
-    data['cover_medium'] = this.coverMedium;
-    data['cover_big'] = this.coverBig;
-    data['cover_xl'] = this.coverXl;
-    data['md5_image'] = this.md5Image;
-    data['release_date'] = this.releaseDate;
-    data['tracklist'] = this.tracklist;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['link'] = link;
+    data['cover'] = cover;
+    data['cover_small'] = coverSmall;
+    data['cover_medium'] = coverMedium;
+    data['cover_big'] = coverBig;
+    data['cover_xl'] = coverXl;
+    data['md5_image'] = md5Image;
+    data['release_date'] = releaseDate;
+    data['tracklist'] = tracklist;
+    data['type'] = type;
     return data;
   }
 }

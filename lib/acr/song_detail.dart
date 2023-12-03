@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:tune_finder/acr/deezer_song_model.dart';
 import 'package:tune_finder/acr/margin.dart';

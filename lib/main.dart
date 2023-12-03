@@ -5,10 +5,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:share/share.dart';
 import 'package:tune_finder/acr/home_page.dart';
 import 'package:tune_finder/acr/log.dart';
 import 'package:tune_finder/acr/providers.dart';
-import 'package:tune_finder/acr/theme.dart';
+import 'package:tune_finder/all.dart';
+import 'package:tune_finder/artists.dart';
+import 'package:tune_finder/internet.dart';
+import 'package:tune_finder/playlists.dart';
+import 'package:tune_finder/playlistsforyou.dart';
+import 'package:tune_finder/search.dart';
+import 'package:tune_finder/settings.dart';
+import 'package:tune_finder/songinfo.dart';
 
 void main() {
   Log.init(kReleaseMode);
@@ -58,7 +66,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final loading = useProvider(homeVM.select((v) => v.loading));
 
     var screenwidth = MediaQuery.of(context).size.width;
-    var screenheight = MediaQuery.of(context).size.height;
 
     return DefaultTabController(
       length: 3,
@@ -180,8 +187,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage())); //TODO: Replace with Search Widget
+                                builder: (context) => const Search()));
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -209,7 +215,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   Widget left() {
-    //Navigator.pop(context), bottomsheet kapatma
     showmodal() {
       showModalBottomSheet<void>(
         context: context,
@@ -368,7 +373,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
                 InkWell(
                   onTap: () {
-                    // Share.share("null");
+                    Share.share("null");
                   },
                   child: Container(
                     color: Colors.transparent,
@@ -510,7 +515,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
 
     var screenwidth = MediaQuery.of(context).size.width;
-    var screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(0, 13, 21, 1),
       appBar: AppBar(
@@ -520,7 +524,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomePage(), //TODO Settings page
+                builder: (context) => const Settings(),
               ),
             );
           },
@@ -553,7 +557,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(), //TODO All
+                            builder: (context) => const All(),
                           ),
                         );
                       },
@@ -608,8 +612,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const HomePage(), //TODO Artists
+                            builder: (context) => const Artists(),
                           ),
                         );
                       },
@@ -645,8 +648,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const HomePage(), //TODO PlaylistsForYou
+                            builder: (context) => const PlaylistsForYou(),
                           ),
                         );
                       },
@@ -704,8 +706,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(), //TODO Songinfo
+                                builder: (context) => const Songinfo(),
                               ),
                             );
                           },
@@ -859,324 +860,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(), //TODO Songinfo
-                              ),
-                            );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(18, 31, 37, 1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            width: 175,
-                            height: 275,
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromRGBO(18, 31, 37, 1),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(0),
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
-                                  ),
-                                  width: double.infinity,
-                                  height: 175,
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(0),
-                                          bottomRight: Radius.circular(0),
-                                          topLeft: Radius.circular(8),
-                                          topRight: Radius.circular(8),
-                                        ),
-                                        child: Image.asset(
-                                          "assets/images/todd.jpg",
-                                          fit: BoxFit.cover,
-                                          height: 175,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 8,
-                                        right: 5,
-                                        child: InkWell(
-                                          onTap: () {
-                                            showmodal();
-                                          },
-                                          child: const Icon(
-                                            Icons.more_vert,
-                                            color: Colors.white,
-                                            size: 30,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 55,
-                                        left: 55,
-                                        child: Icon(
-                                          Icons.play_circle,
-                                          color: Colors.black.withOpacity(0.7),
-                                          size: 75,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromRGBO(18, 31, 37, 1),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
-                                      topLeft: Radius.circular(0),
-                                      topRight: Radius.circular(0),
-                                    ),
-                                  ),
-                                  width: double.infinity,
-                                  height: 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "La La La",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        const Text(
-                                          "Naughty Boy Feat. Samuel",
-                                          style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.grey,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromRGBO(
-                                                40, 49, 54, 1),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          width: 65,
-                                          height: 25,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/images/spotify.png",
-                                                  fit: BoxFit.contain,
-                                                  height: 175,
-                                                  color: Colors.white,
-                                                ),
-                                                const SizedBox(width: 5),
-                                                const Text(
-                                                  "Spotify",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 22),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(), //TODO Songinfo
-                              ),
-                            );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(18, 31, 37, 1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            width: 175,
-                            height: 275,
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromRGBO(18, 31, 37, 1),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(0),
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
-                                  ),
-                                  width: double.infinity,
-                                  height: 175,
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(0),
-                                          bottomRight: Radius.circular(0),
-                                          topLeft: Radius.circular(8),
-                                          topRight: Radius.circular(8),
-                                        ),
-                                        child: Image.asset(
-                                          "assets/images/todd.jpg",
-                                          fit: BoxFit.cover,
-                                          height: 175,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 8,
-                                        right: 5,
-                                        child: InkWell(
-                                          onTap: () {
-                                            showmodal();
-                                          },
-                                          child: const Icon(
-                                            Icons.more_vert,
-                                            color: Colors.white,
-                                            size: 30,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 55,
-                                        left: 55,
-                                        child: Icon(
-                                          Icons.play_circle,
-                                          color: Colors.black.withOpacity(0.7),
-                                          size: 75,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromRGBO(18, 31, 37, 1),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
-                                      topLeft: Radius.circular(0),
-                                      topRight: Radius.circular(0),
-                                    ),
-                                  ),
-                                  width: double.infinity,
-                                  height: 100,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "La La La",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        const Text(
-                                          "Naughty Boy Feat. Samuel",
-                                          style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.grey,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromRGBO(
-                                                40, 49, 54, 1),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          width: 65,
-                                          height: 25,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  "assets/images/spotify.png",
-                                                  fit: BoxFit.contain,
-                                                  height: 175,
-                                                  color: Colors.white,
-                                                ),
-                                                const SizedBox(width: 5),
-                                                const Text(
-                                                  "Spotify",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(), //TODO Songinfo
+                                builder: (context) => const Songinfo(),
                               ),
                             );
                           },
@@ -1336,8 +1020,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(), //TODO Songinfo
+                                builder: (context) => const Songinfo(),
                               ),
                             );
                           },
@@ -1491,8 +1174,321 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(), //TODO Songinfo
+                                builder: (context) => const Songinfo(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(18, 31, 37, 1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            width: 175,
+                            height: 275,
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromRGBO(18, 31, 37, 1),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                    ),
+                                  ),
+                                  width: double.infinity,
+                                  height: 175,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(8),
+                                          topRight: Radius.circular(8),
+                                        ),
+                                        child: Image.asset(
+                                          "assets/images/todd.jpg",
+                                          fit: BoxFit.cover,
+                                          height: 175,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 8,
+                                        right: 5,
+                                        child: InkWell(
+                                          onTap: () {
+                                            showmodal();
+                                          },
+                                          child: const Icon(
+                                            Icons.more_vert,
+                                            color: Colors.white,
+                                            size: 30,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 55,
+                                        left: 55,
+                                        child: Icon(
+                                          Icons.play_circle,
+                                          color: Colors.black.withOpacity(0.7),
+                                          size: 75,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromRGBO(18, 31, 37, 1),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
+                                    ),
+                                  ),
+                                  width: double.infinity,
+                                  height: 100,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "La La La",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        const Text(
+                                          "Naughty Boy Feat. Samuel",
+                                          style: TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            color: Colors.grey,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromRGBO(
+                                                40, 49, 54, 1),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          width: 65,
+                                          height: 25,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/spotify.png",
+                                                  fit: BoxFit.contain,
+                                                  height: 175,
+                                                  color: Colors.white,
+                                                ),
+                                                const SizedBox(width: 5),
+                                                const Text(
+                                                  "Spotify",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 22),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Songinfo(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(18, 31, 37, 1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            width: 175,
+                            height: 275,
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromRGBO(18, 31, 37, 1),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                    ),
+                                  ),
+                                  width: double.infinity,
+                                  height: 175,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(8),
+                                          topRight: Radius.circular(8),
+                                        ),
+                                        child: Image.asset(
+                                          "assets/images/todd.jpg",
+                                          fit: BoxFit.cover,
+                                          height: 175,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 8,
+                                        right: 5,
+                                        child: InkWell(
+                                          onTap: () {
+                                            showmodal();
+                                          },
+                                          child: const Icon(
+                                            Icons.more_vert,
+                                            color: Colors.white,
+                                            size: 30,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 55,
+                                        left: 55,
+                                        child: Icon(
+                                          Icons.play_circle,
+                                          color: Colors.black.withOpacity(0.7),
+                                          size: 75,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromRGBO(18, 31, 37, 1),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
+                                    ),
+                                  ),
+                                  width: double.infinity,
+                                  height: 100,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "La La La",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        const Text(
+                                          "Naughty Boy Feat. Samuel",
+                                          style: TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            color: Colors.grey,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromRGBO(
+                                                40, 49, 54, 1),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          width: 65,
+                                          height: 25,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/spotify.png",
+                                                  fit: BoxFit.contain,
+                                                  height: 175,
+                                                  color: Colors.white,
+                                                ),
+                                                const SizedBox(width: 5),
+                                                const Text(
+                                                  "Spotify",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Songinfo(),
                               ),
                             );
                           },
@@ -1649,7 +1645,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(), //TODO All
+                            builder: (context) => const All(),
                           ),
                         );
                       },
@@ -1709,7 +1705,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   Widget right() {
     var screenwidth = MediaQuery.of(context).size.width;
-    var screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(0, 13, 21, 1),
       appBar: AppBar(
@@ -1753,8 +1748,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const HomePage(), //TODO Internet
+                            builder: (context) => const Internet(),
                           ),
                         );
                       },
@@ -1816,8 +1810,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const HomePage(), //TODO Playlists
+                                  builder: (context) => const Playlists(),
                                 ),
                               );
                             },
@@ -1850,8 +1843,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -1909,8 +1901,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -1968,8 +1959,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2055,8 +2045,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const HomePage(), //TODO Playlists
+                                  builder: (context) => const Playlists(),
                                 ),
                               );
                             },
@@ -2089,8 +2078,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2148,8 +2136,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2207,8 +2194,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2294,8 +2280,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const HomePage(), //TODO Playlists
+                                  builder: (context) => const Playlists(),
                                 ),
                               );
                             },
@@ -2328,8 +2313,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2387,8 +2371,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2446,8 +2429,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HomePage(), //TODO Songinfo
+                                      builder: (context) => const Songinfo(),
                                     ),
                                   );
                                 },
@@ -2508,11 +2490,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            // SizedBox(height: 5),
-            // Divider(
-            //   color: Color.fromRGBO(34, 48, 51, 1),
-            //   thickness: 15,
-            // ),
             const SizedBox(height: 5),
           ],
         ),
